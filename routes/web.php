@@ -39,17 +39,26 @@ Route::get('/dashboardAdmin', [DashboardController::class, 'index'])->name('dash
 Route::resource('jadwal', JadwalController::class)->middleware(\App\Http\Middleware\CheckLogin::class);;
 
 // Route::resource('/dukcapil', DukcapilController::class);
-Route::get('/dukcapil', [DukcapilController::class, 'index'])->name('dukcapil.index')->middleware(\App\Http\Middleware\CheckLogin::class);;
-Route::post('/dukcapil/{id}/konfirmasi', [DukcapilController::class, 'konfirmasi'])->name('dukcapil.konfirmasi');
-Route::get('/dukcapil/{id}/show', [DukcapilController::class, 'show'])->name('dukcapil.show');
-Route::get('/dukcapil/{id}/call', [DukcapilController::class, 'call'])->name('dukcapil.call');
+Route::get('/dukcapil', [DukcapilController::class, 'index'])
+    ->name('dukcapil.index');
+
+Route::get('/dukcapil/{id}', [DukcapilController::class, 'show'])
+    ->name('dukcapil.show');
+
+Route::post('/dukcapil/{id}/konfirmasi', [DukcapilController::class, 'konfirmasi'])
+    ->name('dukcapil.konfirmasi');
+
 
 
 // Route::resource('/pencatatan_sipil', PencatatanSipilController::class);
-Route::get('/pencatatan_sipil', [PencatatanSipilController::class, 'index'])->name('pencatatan_sipil.index')->middleware(\App\Http\Middleware\CheckLogin::class);;
-Route::post('/pencatatan_sipil/{id}/konfirmasi', [PencatatanSipilController::class, 'konfirmasi'])->name('pencatatan_sipil.konfirmasi');
-Route::get('/pencatatan_sipil/{id}/show', [PencatatanSipilController::class, 'show'])->name('pencatatan_sipil.show');
-Route::get('/pencatatan_sipil/{id}/call', [PencatatanSipilController::class, 'call'])->name('pencatatan_sipil.call');
+Route::get('/pencatatan_sipil', [PencatatanSipilController::class, 'index'])
+    ->name('pencatatan_sipil.index');
+
+Route::get('/pencatatan_sipil/{id}', [PencatatanSipilController::class, 'show'])
+    ->name('pencatatan_sipil.show');
+
+Route::post('/pencatatan_sipil/{id}/konfirmasi', [PencatatanSipilController::class, 'konfirmasi'])
+    ->name('pencatatan_sipil.konfirmasi');
 
 
 

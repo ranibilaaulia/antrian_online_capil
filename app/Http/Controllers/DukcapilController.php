@@ -11,13 +11,22 @@ class DukcapilController extends Controller
         public function index()
     {
         // Ambil antrean berdasarkan tanggal hari ini
-        $antreans = Antrean::whereDate('created_at', today())
-            ->whereHas('pendaftar', function ($query) {
-                $query->where('jenis_pendaftaran', 'dukcapil');
-            })
-            ->orderBy('nomor', 'asc')
-            ->get();
+        // $antreans = Antrean::whereDate('created_at', today())
+        //     ->whereHas('pendaftar', function ($query) {
+        //         $query->where('jenis_pendaftaran', 'dukcapil');
+        //     })
+        //     ->orderBy('nomor', 'asc')
+        //     ->get();
 
+        $antreans=Antrean::whereHas('pendaftar', function ($query) {
+            $query->where('jenis_pendaftaran', 'dukcapil');
+        })
+        ->whereHas('jadwals', function ($query) {
+            $query->whereDate('tanggal', today());
+        })
+        ->orderBy('nomor', 'asc')
+                                    ->get();
+        // dd($antreans);
         return view('admin.pendaftar.dukcapil.index', compact('antreans'));
     }
 

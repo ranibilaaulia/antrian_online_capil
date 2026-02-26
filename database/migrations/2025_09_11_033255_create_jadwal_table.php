@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jadwal', function (Blueprint $table) {
+        Schema::create('jadwals', function (Blueprint $table) {
            $table->id();
             $table->date('tanggal')->nullable(false);   // wajib isi
             $table->time('jam_buka')->nullable(false);  // wajib isi
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jadwal');
+        Schema::dropIfExists('jadwals');
     }
 };

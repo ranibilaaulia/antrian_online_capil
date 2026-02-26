@@ -14,16 +14,16 @@ class Antrean extends Model
     protected $fillable = [
         'nomor',
         'jam',
-        'jadwal_id',
+        'jadwals_id',
         'pendaftar_id',
     ];
         public function pendaftar()
     {
         return $this->belongsTo(Pendaftar::class, 'pendaftar_id');
     }
-        public function jadwal()
+        public function jadwals()
     {
-        return $this->belongsTo(Pendaftar::class, 'jadwal_id');
+        return $this->belongsTo(Jadwal::class, 'jadwals_id');
     }
 
 }

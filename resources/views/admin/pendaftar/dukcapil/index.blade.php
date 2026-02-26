@@ -3,15 +3,19 @@
 @section('head')
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <style>
-    .custom-table th, .custom-table td {
+    .custom-table th,
+    .custom-table td {
         text-align: center;
         vertical-align: middle;
         font-weight: bold;
     }
+
     .custom-table th {
-        background: #d9534f; /* merah header */
+        background: #d9534f;
+        /* merah header */
         color: white;
     }
+
     .btn-konfirmasi {
         background-color: green;
         color: white;
@@ -20,6 +24,7 @@
         border-radius: 6px;
         font-size: 12px;
     }
+
     .icon-btn {
         font-size: 18px;
         margin-left: 6px;
@@ -61,10 +66,10 @@
                                 @csrf
                                 <button type="submit" class="btn-konfirmasi">konfirmasi</button>
                             </form>
-                            <a href="{{ route('dukcapil.show', $antrean->id) }}" class="icon-btn">
+                            <<a href="{{ route('dukcapil.show', $antrean->pendaftar->id) }}" class="icon-btn">
                                 <i class="fas fa-eye"></i>
-                            
-                            </a>
+                                </a>
+
                         </td>
                     </tr>
                     @empty

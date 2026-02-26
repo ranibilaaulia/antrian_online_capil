@@ -18,7 +18,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1d2671, #c33764);
+            background: linear-gradient(135deg, #0a1dcaff, #a6b7c9ff);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -59,7 +59,7 @@
         }
 
         .btn-login {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #667eea, #25355eff);
             border: none;
             border-radius: 30px;
             color: #fff;
@@ -69,7 +69,7 @@
         }
 
         .btn-login:hover {
-            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+            background: linear-gradient(135deg, #111851ff, #251b5fff);
             transform: scale(1.02);
         }
 

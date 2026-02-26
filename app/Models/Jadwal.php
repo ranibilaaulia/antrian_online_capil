@@ -9,7 +9,8 @@ class Jadwal extends Model
 {
     use HasFactory;
 
-    protected $table = 'jadwal';
+    // PAKAI NAMA TABEL YANG BENAR & HURUF KECIL
+    protected $table = 'jadwals';
 
     protected $fillable = [
         'tanggal',
@@ -17,8 +18,9 @@ class Jadwal extends Model
         'jam_tutup',
         'kuota',
     ];
+
     public function antrean()
-{
-    return $this->hasMany(Antrean::class, 'jadwal_id');
-}
+    {
+        return $this->hasMany(Antrean::class, 'jadwals_id');
+    }
 }

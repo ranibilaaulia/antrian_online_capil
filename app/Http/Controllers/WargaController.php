@@ -21,7 +21,7 @@ class WargaController extends Controller
         ->whereRaw('
             (SELECT COUNT(*)
              FROM antrean
-             WHERE antrean.jadwal_id = jadwal.id) < jadwal.kuota
+             WHERE antrean.jadwals_id = jadwals.id) < jadwals.kuota
         ')
         ->orderBy('tanggal', 'asc')
         ->get();
@@ -49,7 +49,7 @@ class WargaController extends Controller
 
         session(['pendaftar_id' => $pendaftar->id]);
         session(['jenis_pendaftaran' => $pendaftar->jenis_pendaftaran]);
-        session(['jadwal_id' => $request->jadwal_id]);
+        session(['jadwals_id' => $request->jadwals_id]);
 
         return redirect()->route('warga.index')
             ->with('success', 'Pendaftar berhasil ditambahkan.');
@@ -59,7 +59,7 @@ public function cetak(Request $request)
 {
     $pendaftarId = session('pendaftar_id');
     $jenis_pendaftaran = session('jenis_pendaftaran');
-    $jadwal_id = session('jadwal_id');
+    $jadwals_id = session('jadwals_id');
 
     // 🔒 Pastikan warga sudah registrasi
     if (!$pendaftarId) {
@@ -76,21 +76,21 @@ public function cetak(Request $request)
     };
 
     // Ambil jadwal berdasarkan session
-    $jadwal = Jadwal::find($jadwal_id);
+    $jadwal = Jadwal::find($jadwals_id);
     if (!$jadwal) {
         return redirect()->route('register')
             ->with('error', 'Jadwal tidak ditemukan.');
     }
 
     // ✅ Cek kuota antrean untuk jadwal ini
-    $totalAntrean = Antrean::where('jadwal_id', $jadwal->id)->count();
+    $totalAntrean = Antrean::where('jadwals_id', $jadwal->id)->count();
     if ($totalAntrean >= $jadwal->kuota) {
         return redirect()->route('register')
             ->with('error', 'Kuota antrean untuk jadwal ini sudah penuh.');
     }
 
     // ✅ Ambil nomor terakhir untuk jadwal & prefix ini
-    $last = Antrean::where('jadwal_id', $jadwal->id)
+    $last = Antrean::where('jadwals_id', $jadwal->id)
         ->where('nomor', 'like', $prefix . '%')
         ->orderByDesc('id')
         ->first();
@@ -107,10 +107,10 @@ public function cetak(Request $request)
     $antrean = Antrean::create([
         'nomor'         => $nomor,
         'jam'           => now()->format('H:i'),
-        'jadwal_id'     => $jadwal->id,
+        'jadwals_id'     => $jadwal->id,
         'pendaftar_id'  => $pendaftarId,
     ]);
-      session()->forget(['pendaftar_id', 'jenis_pendaftaran', 'jadwal_id']);
+      session()->forget(['pendaftar_id', 'jenis_pendaftaran', 'jadwals_id']);
 
     return view('warga.show', compact('antrean', 'jadwal'));
 }

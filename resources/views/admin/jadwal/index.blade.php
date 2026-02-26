@@ -82,7 +82,7 @@
                         <th>Kuota</th>
                         {{-- <th>Aksi</th> --}}
                     </tr>
-                </thead>
+                </thead>    
                 <tbody>
                     @forelse($jadwals as $jadwal)
                         <tr>

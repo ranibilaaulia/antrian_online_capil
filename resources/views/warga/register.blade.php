@@ -164,9 +164,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="jadwal_id">Tanggal Jadwal</label>
-                            <select name="jadwal_id" id="jadwal_id"
-                                class="form-control @error('jadwal_id') is-invalid @enderror" required>
+                            <label for="jadwals_id">Tanggal Jadwal</label>
+                            <select name="jadwals_id" id="jadwals_id"
+                                class="form-control @error('jadwals_id') is-invalid @enderror" required>
                                 <option value="">-- Pilih Tanggal Jadwal --</option>
                                 @foreach ($jadwals as $j)
                                     <option value="{{ $j->id }}">
@@ -175,7 +175,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('jadwal_id')
+                            @error('jadwals_id')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
